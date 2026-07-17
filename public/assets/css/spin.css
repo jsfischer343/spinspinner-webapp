@@ -33,7 +33,9 @@
     align-items: center;
 }
 
-.direction-icon {
+.spin-icon {
+    display: flex;
+    place-items: center;
     height: 25px;
     width: 25px;
     margin: 5px;

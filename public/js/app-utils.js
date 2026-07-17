@@ -1,7 +1,9 @@
 import { SpinPosition } from './spinposition.js';
 
-const ccwIconPath = "/assets/images/rotate_left_white.svg";
-const cwIconPath = "/assets/images/rotate_right_white.svg";
+const ccwIconPathLight = "/assets/images/rotate_left_black.svg";
+const cwIconPathLight = "/assets/images/rotate_right_black.svg";
+const ccwIconPathDark = "/assets/images/rotate_left_white.svg";
+const cwIconPathDark = "/assets/images/rotate_right_white.svg";
 
 export function getISUSpinCodeAsText(spinObj) {
     let returnString = "";
@@ -42,7 +44,10 @@ export function getSpinHTML(spinObj) {
                 <div class="spin-part-text">${entranceCardText}</div>
             </li>
             <li class="spin-separator">
-                <img class="direction-icon" src="/assets/images/arrow_cool_down_white.svg" width="25" height="25">
+                <picture class="spin-icon">
+                    <source srcset="/assets/images/arrow_cool_down_white.svg" media="(prefers-color-scheme: dark)">
+                    <img src="/assets/images/arrow_cool_down_black.svg" width="25" height="25">
+                </picture>
             </li>`;
     }
     for(let i=0; i < spinObj.spinSegments.length; i++) {
@@ -50,14 +55,20 @@ export function getSpinHTML(spinObj) {
         if(i!=spinObj.spinSegments.length-1) {
             spinHTML += `
           <li class="spin-separator">
-              <img class="direction-icon" src="/assets/images/arrow_cool_down_white.svg" width="25" height="25">
+            <picture class="spin-icon">
+                <source srcset="/assets/images/arrow_cool_down_white.svg" media="(prefers-color-scheme: dark)">
+                <img src="/assets/images/arrow_cool_down_black.svg" width="25" height="25">
+            </picture>
           </li>`;
         }
     }
     if(spinObj.features.difficultExit) {
         spinHTML += `
             <li class="spin-separator">
-                <img class="direction-icon" src="/assets/images/arrow_cool_down_white.svg" width="25" height="25">
+                <picture class="spin-icon">
+                    <source srcset="/assets/images/arrow_cool_down_white.svg" media="(prefers-color-scheme: dark)">
+                    <img src="/assets/images/arrow_cool_down_black.svg" width="25" height="25">
+                </picture>
             </li>
             <li class="spin-part">
                 <div class="spin-part-text">Difficult Exit</div>
@@ -83,16 +94,22 @@ export function getSpinHTML(spinObj) {
 
 export function getSpinSegmentHTML(segmentObj) {
     let segmentHTML = "";
-    let rotationDirectionIconPath = '';
-    if(segmentObj.direction==='r') rotationDirectionIconPath = ccwIconPath;
-    else rotationDirectionIconPath = cwIconPath;
+    let rotationDirectionIconPathDark = '';
+    let rotationDirectionIconPathLight = '';
+    if(segmentObj.direction==='r') rotationDirectionIconPathDark = ccwIconPathDark;
+    else rotationDirectionIconPathDark = cwIconPathDark;
+    if(segmentObj.direction==='r') rotationDirectionIconPathLight = ccwIconPathLight;
+    else rotationDirectionIconPathLight = cwIconPathLight;
     let footnessText = "";
     if(segmentObj.footness==='f') footnessText = "Forward";
     else footnessText = "Backward";
     segmentHTML += `
         <li class="spin-part">
             <div class="spin-part-header">
-                <img class="direction-icon" src="${rotationDirectionIconPath}" width="25" height="25">
+                <picture class="spin-icon">
+                    <source srcset="${rotationDirectionIconPathDark}" media="(prefers-color-scheme: dark)">
+                    <img src="${rotationDirectionIconPathLight}" width="25" height="25">
+                </picture>
                 <div class="spin-part-header-text">${footnessText}</div>
             </div>`;
     for(let i=0;i<segmentObj.spinPositions.length; i++) {
@@ -104,5 +121,11 @@ export function getSpinSegmentHTML(segmentObj) {
 }
 
 export function getSpinPositionHTML(spinPositionObj) {
-    return `<div class="spin-part-part">${SpinPosition.prettyPrint(spinPositionObj)}</div>`;
+    let positionText = capitalize(SpinPosition.prettyPrint(spinPositionObj));
+    return `<div class="spin-part-part">${positionText}</div>`;
+}
+
+
+export function capitalize(string) {
+    return string.replace(/\b\w/g, c => c.toUpperCase());
 }

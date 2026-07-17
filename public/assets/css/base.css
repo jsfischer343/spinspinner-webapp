@@ -8,9 +8,9 @@
     --text-light-secondary: #606060;
     --light-secondary: #c1c1c1;
     --light-secondary-hover: #bfbfbf;
-    --border-light: color-mix(in srgb, var(--bg-dark) 90%, black);
-    --bg-light: #efefef;
-    --bg-light-hover: color-mix(in srgb, var(--bg-dark) 90%, black);
+    --border-light: color-mix(in srgb, var(--bg-light) 90%, black);
+    --bg-light: #e0e0e0;
+    --bg-light-hover: color-mix(in srgb, var(--bg-light) 90%, black);
     --text-dark: white;
     --text-dark-secondary: #c1c1c1;
     --dark-secondary: #3d3d3d;
@@ -117,6 +117,8 @@ menu a {
 
 .menu-icon {
     margin-left: 15px;
+    width: 25px;
+    height: 25px;
 }
 
 .menu-text {

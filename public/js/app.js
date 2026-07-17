@@ -1,5 +1,5 @@
 import { SpinSpinner } from './spinspinner.js';
-import { getSpinHTML, getISUSpinCodeAsText, getSpinSegmentHTML, getSpinPositionHTML } from './spin-utils.js';
+import { getSpinHTML, getISUSpinCodeAsText, getSpinSegmentHTML, getSpinPositionHTML } from './app-utils.js';
 
 const applicationContainer = document.getElementById('mainapplicationcontainer');
 const spinButtonContainer = document.getElementById('spin-button-container');

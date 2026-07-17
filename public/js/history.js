@@ -1,4 +1,4 @@
-import { getSpinHTML, getISUSpinCodeAsText, getSpinSegmentHTML, getSpinPositionHTML } from './spin-utils.js';
+import { getSpinHTML, getISUSpinCodeAsText, getSpinSegmentHTML, getSpinPositionHTML } from './app-utils.js';
 
 const applicationContainer = document.getElementById('mainapplicationcontainer');
 const ccwIconPath = "/assets/images/rotate_left_white.svg";
