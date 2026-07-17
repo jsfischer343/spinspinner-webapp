@@ -1,0 +1,83 @@
+.spin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.spin-code {
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    margin: 5px;
+}
+
+.spin-part {
+    width: 420px;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: var(--light-secondary);
+    @media (prefers-color-scheme: dark) {
+        background-color: var(--dark-secondary);
+    }
+}
+
+.spin-part-text {
+    text-align: center;
+}
+
+.spin-part-header {
+    display: flex;
+    align-items: center;
+}
+
+.direction-icon {
+    height: 25px;
+    width: 25px;
+    margin: 5px;
+}
+
+.spin-part-header-text {
+    flex: 1;
+    text-align: center;
+    padding-right: 30px;
+}
+
+.spin-part-part {
+    text-align: center;
+}
+
+.spin-part-separator {
+    text-align: center;
+}
+
+.spin-separator {
+    display: flex;
+    align-items: center;
+}
+
+.spin-additional-note {
+    text-align: center;
+    margin: 5px;
+}
+
+.spin-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 1;
+    background-color: transparent;
+    bottom: 70px;
+    left: 170px;
+    height: 50px;
+    width: calc(100% - 170px);
+    button {
+        height: 40px;
+        width: 90px;
+        font-size: 17px;
+        font-weight: 500;
+    }
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/images/spinspinner_logo.png">
+    <link rel="stylesheet" href="/assets/css/base.css">
+    <link rel="stylesheet" href="/assets/css/options.css">
+    <script type="module" src="/js/options.js"></script>
+    <title>SpinSpinner - Options</title>
+  </head>
+  <body class="theme-light">
+      <header class="top-bar">
+        <h2>SpinSpinner</h2>
+        <h6>beta</h6>
+      </header>
+      <div class="left-menu">
+        <menu>
+          <a href="/"><li class="menu-item">
+            <img class="menu-icon" src="/assets/images/add_circle_white.svg" width="25" height="25">
+            <div class="menu-text" href="#">Generate</div>
+          </li></a>
+          <a href="/options.html"><li class="menu-item">
+            <img class="menu-icon" src="/assets/images/check_box_white.svg" width="25" height="25">
+            <div class="menu-text" href="#">Options</div>
+          </li></a>
+          <a href="/resources.html"><li class="menu-item">
+            <img class="menu-icon" src="/assets/images/book_2_white.svg" width="25" height="25">
+            <div class="menu-text" href="#">Resources</div>
+          </li></a>
+          <a href="/history.html"><li class="menu-item">
+            <img class="menu-icon" src="/assets/images/history_white.svg" width="25" height="25">
+            <div class="menu-text" href="#">History</div>
+          </li></a>
+        </menu>
+      </div>
+      <div class="main-application-container" id="mainapplicationcontainer">
+        <ul class="option-list">
+            <li class="option-item has-dropdown">
+                <div class="option-desc-text">SpinType</div>
+                <div class="option-selected-text" id="option-selected-text-spintype">Any</div>
+                <ul class="dropdown-content">
+                    <li id="option-spintype-any">Any</li>
+                    <li id="option-spintype-camel">Camel</li>
+                    <li id="option-spintype-sit">Sit</li>
+                    <li id="option-spintype-upright">Upright</li>
+                    <li id="option-spintype-layback">Layback</li>
+                    <li id="option-spintype-combo">Combo</li>
+                </ul>
+            </li>
+            <li class="option-item has-dropdown">
+                <div class="option-desc-text">Spin Level</div>
+                <div class="option-selected-text" id="option-selected-text-spinlevel">Any</div>
+                <ul class="dropdown-content">
+                    <li id="option-spinlevel-any">Any</li>
+                    <li id="option-spinlevel-base">Base</li>
+                    <li id="option-spinlevel-1">1</li>
+                    <li id="option-spinlevel-2">2</li>
+                    <li id="option-spinlevel-3">3</li>
+                    <li id="option-spinlevel-4">4</li>
+                </ul>
+            </li>
+            <li class="option-item has-dropdown">
+                <div class="option-desc-text">Preferred Spin Direction</div>
+                <div class="option-selected-text" id="option-selected-text-spindirection">Counterclockwise</div>
+                <ul class="dropdown-content">
+                    <li id="option-spindirection-cc">Counterclockwise</li>
+                    <li id="option-spindirection-c">Clockwise</li>
+                </ul>
+            </li>
+            <li class="option-item has-dropdown">
+                <div class="option-desc-text">Rule Set</div>
+                <div class="option-selected-text" id="option-selected-text-ruleset">Standard</div>
+                <ul class="dropdown-content">
+                    <li id="option-ruleset-s">Standard</li>
+                    <li id="option-ruleset-ajs">Adult Junior-Senior</li>
+                    <li id="option-ruleset-ain">Adult Intermediate-Novice</li>
+                    <li id="option-ruleset-ag">Adult Gold</li>
+                    <li id="option-ruleset-as">Adult Silver</li>
+                    <li id="option-ruleset-ab">Adult Bronze</li>
+                </ul>
+            </li>
+            <li class="option-item place-center" id="option-lessweirdness">
+                <label for="option-lessweirdness" style="margin-right: 15px; font-size: 16px;" id="optiontext-lessweirdness">Less Weirdness</label>
+                <input type="checkbox" id="option-lessweirdness-checkbox" disabled>
+            </li>
+        </ul>
+      </div>
+      <footer class="bottom-bar">
+        <ul>
+          <a href=""><li>About</li></a>
+          <a href=""><li>Github</li></a>
+          <a href="https://tally.so/r/BzlyL1"><li>Contact</li></a>
+          <a href="https://tally.so/r/2ExpKe"><li>Beta Survey</li></a>
+          <a href="https://tally.so/r/XxkaBz"><li>Report Bug</li></a>
+          <a href="https://tally.so/r/VLAe16"><li>Report Rule Inconsistency</li></a>
+          <a href="/assets/documents/LICENSE.txt"><li>Licence</li></a>
+        </ul>
+        <div class="footer-app-info">SpinSpinner v1.1 beta</div>
+      </footer>
+  </body>
+</html>

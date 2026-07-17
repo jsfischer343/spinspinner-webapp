@@ -1,0 +1,13 @@
+.resource-page {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 90%;
+
+    li {
+        list-style-type: square;
+        margin: 10px;
+        width: 100%;
+        font-size: 20px;
+    }
+}

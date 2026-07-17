@@ -1,0 +1,33 @@
+.history-controls-container {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    position: fixed;
+    z-index: 1;
+    background-color: transparent;
+    top: 70px;
+    left: 200px;
+    height: 60px;
+    width: calc(100% - 200px);
+}
+
+.history-nav-count {
+    margin: 0px 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.history-nav-arrows {
+    cursor: pointer;
+    padding: 0px 10px;
+    border-radius: 10px;
+    font-size: 40px;
+    text-align: center;
+}
+
+.history-nav-arrows:hover {
+    background-color: var(--bg-light-hover);
+    @media (prefers-color-scheme: dark) {
+        background-color: var(--bg-dark-hover);
+    }
+}
