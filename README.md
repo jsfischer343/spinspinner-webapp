@@ -1,6 +1,6 @@
 <div align="center">
   <h1>SpinSpinner</h1>
-  <img src="https://github.com/jsfischer343/spinspinner-webapp/public/assets/images/spinspinner_logo.png" alt="SpinSpinner.icon"/>
+  <img src="https://github.com/jsfischer343/spinspinner-webapp/blob/master/public/assets/images/spinspinner_logo.png" alt="SpinSpinner.icon"/>
 </div>
 
 ## About
