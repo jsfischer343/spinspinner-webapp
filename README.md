@@ -8,7 +8,7 @@ SpinSpinner is a simple app that generates random figure skating spins that foll
 It is intended to assist skaters in coming up with leveled spins for their programs by only generating ones that adhere to the required guidelines for acquiring spin levels.
 
 ## Web URL
-TBD
+[figureskatingspinspinner.net](https://figureskatingspinspinner.net)
 
 ## Guide
 
@@ -32,7 +32,7 @@ Spins are broken down into segments: entrance, first segment, second segment (ch
 * Less Weirdness: Enables additional logic to filter out potentially awkward or impossible spins (on by default)
 
 ## Foundational Repository
-https://github.com/jsfischer343/skating-spin-spinner-cli
+[github.com/jsfischer343/skating-spin-spinner-cli](https://github.com/jsfischer343/skating-spin-spinner-cli)
 
 ## Credits
 App Icon: Anna Fischer
