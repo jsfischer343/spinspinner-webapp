@@ -3,7 +3,6 @@
     flex: 1;
     flex-direction: column;
     width: 90%;
-
     li {
         list-style-type: square;
         margin: 10px;

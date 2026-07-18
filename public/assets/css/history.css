@@ -1,7 +1,7 @@
 .history-controls-container {
     display: flex;
     align-items: center;
-    justify-content: right;
+    justify-content: flex-end;
     position: fixed;
     z-index: 1;
     background-color: transparent;
@@ -12,14 +12,14 @@
 }
 
 .history-nav-count {
-    margin: 0px 20px;
+    margin: 0 20px;
     font-size: 20px;
     text-align: center;
 }
 
 .history-nav-arrows {
     cursor: pointer;
-    padding: 0px 10px;
+    padding: 0 10px;
     border-radius: 10px;
     font-size: 40px;
     text-align: center;

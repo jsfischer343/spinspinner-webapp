@@ -10,24 +10,26 @@ const historyNavCount = document.getElementById('history-nav-count');
 
 const spinObjArray = JSON.parse(localStorage.getItem('SpinHistory'));
 let currentIndex = null;
+let maxIndex = spinObjArray.length-1;
+historyNavCount.innerHTML = `1/${maxIndex+1}`;
 
 historyNavLeftButton.onclick = () => {
     if(spinObjArray===null) return; //empty array guard
     if(currentIndex===null) { currentIndex = spinObjArray.length-1; }
-    else if(currentIndex==9||currentIndex==spinObjArray.length-1) { return; }
+    if(currentIndex==maxIndex||currentIndex==spinObjArray.length-1) { return; }
     else { currentIndex++; };
-    let displayedIndex = 10-currentIndex;
-    historyNavCount.innerHTML = `${displayedIndex}/10`;
+    let displayedIndex = (maxIndex+1)-currentIndex;
+    historyNavCount.innerHTML = `${displayedIndex}/${maxIndex+1}`;
     applicationContainer.innerHTML = getSpinHTML(spinObjArray[currentIndex]);
 };
 
 historyNavRightButton.onclick = () => {
     if(spinObjArray===null) return; //empty array guard
     if(currentIndex===null) { currentIndex = spinObjArray.length-1; }
-    else if(currentIndex==0) { return; }
+    if(currentIndex==0) { return; }
     else { currentIndex--; };
-    let displayedIndex = 10-currentIndex;
-    historyNavCount.innerHTML = `${displayedIndex}/10`;
+    let displayedIndex = (maxIndex+1)-currentIndex;
+    historyNavCount.innerHTML = `${displayedIndex}/${maxIndex+1}`;
     applicationContainer.innerHTML = getSpinHTML(spinObjArray[currentIndex]);
 };
 
