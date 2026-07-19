@@ -23,10 +23,6 @@
 .has-dropdown {
     position: relative;
     flex-direction: column;
-    background-color: var(--light-secondary);
-    @media (prefers-color-scheme: dark) {
-        background-color: var(--dark-secondary);
-    }
 }
 
 .option-desc-text {
@@ -82,10 +78,6 @@
     .dropdown-content {
         display: block;
     }
-}
-
-.dropdown-content li.no-display {
-    display: none;
 }
 
 
