@@ -31,3 +31,19 @@
         background-color: var(--bg-dark-hover);
     }
 }
+
+
+@media only screen and (max-width: 600px) {
+    .history-controls-container {
+        padding-top: 60px;
+        position: static;
+        width: 100%;
+    }
+    .main-application-container {
+        padding-top: 0;
+        min-height: calc(100vh - 60px - 60px);
+    }
+    .spin {
+        padding-bottom: 60px;
+    }
+}

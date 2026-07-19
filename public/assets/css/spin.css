@@ -83,3 +83,22 @@
         font-weight: 500;
     }
 }
+
+
+@media only screen and (max-width: 600px) {
+    .spin {
+        width: 95%;
+        margin-bottom: 0;
+    }
+    .spin-part {
+        width: 95%;
+    }
+    .spin-button-container {
+        z-index: 0;
+        position: static;
+        width: 100%;
+    }
+    .main-application-container {
+        min-height: calc(100vh - 60px - 50px);
+    }
+}

@@ -2,66 +2,73 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/webp" href="/assets/images/spinspinner_logo.webp">
     <link rel="stylesheet" href="/assets/css/base.css">
     <link rel="stylesheet" href="/assets/css/spin.css">
+    <script type="module" src="/js/mobile-menu.js"></script>
     <script type="module" src="/js/app.js"></script>
     <title>SpinSpinner</title>
   </head>
-  <body class="theme-light">
-      <header class="top-bar">
-        <h2>SpinSpinner</h2>
-        <h6>beta</h6>
-      </header>
-      <div class="left-menu">
-        <menu>
-          <a href="/"><li class="menu-item">
-            <picture class="menu-icon" >
-              <source srcset="/assets/images/add_circle_white.svg" media="(prefers-color-scheme: dark)">
-              <img src="/assets/images/add_circle_black.svg" width="25" height="25">
-            </picture>
-            <div class="menu-text" href="#">Generate</div>
-          </li></a>
-          <a href="/options.html"><li class="menu-item">
-            <picture class="menu-icon" >
-              <source srcset="/assets/images/check_box_white.svg" media="(prefers-color-scheme: dark)">
-              <img src="/assets/images/check_box_black.svg" width="25" height="25">
-            </picture>
-            <div class="menu-text" href="#">Options</div>
-          </li></a>
-          <a href="/resources.html"><li class="menu-item">
-            <picture class="menu-icon" >
-              <source srcset="/assets/images/book_2_white.svg" media="(prefers-color-scheme: dark)">
-              <img src="/assets/images/book_2_black.svg" width="25" height="25">
-            </picture>
-            <div class="menu-text" href="#">Resources</div>
-          </li></a>
-          <a href="/history.html"><li class="menu-item">
-            <picture class="menu-icon" >
-              <source srcset="/assets/images/history_white.svg" media="(prefers-color-scheme: dark)">
-              <img src="/assets/images/history_black.svg" width="25" height="25">
-            </picture>
-            <div class="menu-text" href="#">History</div>
-          </li></a>
-        </menu>
+  <body>
+    <header class="top-bar">
+      <h2>SpinSpinner</h2>
+      <h6>beta</h6>
+      <div class="mobile-menu-selector" id="mobile-menu-selector">
+        <picture>
+          <source srcset="/assets/images/menu_white.svg" media="(prefers-color-scheme: dark)" id="mobile-menu-selector-icon-dark">
+          <img src="/assets/images/menu_black.svg" width="30" height="30" id="mobile-menu-selector-icon-light">
+        </picture>
       </div>
-      <div class="main-application-container place-center" id="mainapplicationcontainer">
-      </div>
-      <div class="spin-button-container">
-        <button id="spinbutton">Spin</button>
-      </div>
-      <footer class="bottom-bar">
-        <ul>
-          <a href="https://github.com/jsfischer343/spinspinner-webapp"><li>About</li></a>
-          <a href="https://github.com/jsfischer343/spinspinner-webapp"><li>Github</li></a>
-          <a href="https://tally.so/r/BzlyL1"><li>Contact</li></a>
-          <a href="https://tally.so/r/2ExpKe"><li>Beta Survey</li></a>
-          <a href="https://tally.so/r/XxkaBz"><li>Report Bug</li></a>
-          <a href="https://tally.so/r/VLAe16"><li>Report Rule Inconsistency</li></a>
-          <a href="/assets/documents/LICENSE.txt"><li>Licence</li></a>
-        </ul>
-        <div class="footer-app-info">SpinSpinner v1.1 beta</div>
-      </footer>
+    </header>
+    <div class="menu-nav" id="menu-nav">
+      <menu>
+        <a href="/"><li class="menu-item">
+          <picture class="menu-icon" >
+            <source srcset="/assets/images/add_circle_white.svg" media="(prefers-color-scheme: dark)">
+            <img src="/assets/images/add_circle_black.svg" width="25" height="25">
+          </picture>
+          <div class="menu-text" href="#">Generate</div>
+        </li></a>
+        <a href="/options.html"><li class="menu-item">
+          <picture class="menu-icon" >
+            <source srcset="/assets/images/check_box_white.svg" media="(prefers-color-scheme: dark)">
+            <img src="/assets/images/check_box_black.svg" width="25" height="25">
+          </picture>
+          <div class="menu-text" href="#">Options</div>
+        </li></a>
+        <a href="/resources.html"><li class="menu-item">
+          <picture class="menu-icon" >
+            <source srcset="/assets/images/book_2_white.svg" media="(prefers-color-scheme: dark)">
+            <img src="/assets/images/book_2_black.svg" width="25" height="25">
+          </picture>
+          <div class="menu-text" href="#">Resources</div>
+        </li></a>
+        <a href="/history.html"><li class="menu-item">
+          <picture class="menu-icon" >
+            <source srcset="/assets/images/history_white.svg" media="(prefers-color-scheme: dark)">
+            <img src="/assets/images/history_black.svg" width="25" height="25">
+          </picture>
+          <div class="menu-text" href="#">History</div>
+        </li></a>
+      </menu>
+    </div>
+    <div class="main-application-container place-center" id="mainapplicationcontainer">
+    </div>
+    <div class="spin-button-container">
+      <button id="spinbutton">Spin</button>
+    </div>
+    <footer class="bottom-bar">
+      <ul>
+        <a href="https://github.com/jsfischer343/spinspinner-webapp"><li>About</li></a>
+        <a href="https://github.com/jsfischer343/spinspinner-webapp"><li>Github</li></a>
+        <a href="https://tally.so/r/BzlyL1"><li>Contact</li></a>
+        <a href="https://tally.so/r/2ExpKe"><li>Beta Survey</li></a>
+        <a href="https://tally.so/r/XxkaBz"><li>Report Bug</li></a>
+        <a href="https://tally.so/r/VLAe16"><li>Report Rule Inconsistency</li></a>
+        <a href="/assets/documents/LICENSE.txt"><li>Licence</li></a>
+      </ul>
+      <div class="footer-app-info">SpinSpinner v1.1 beta</div>
+    </footer>
   </body>
 </html>
