@@ -632,7 +632,7 @@ export class SpinSpinner {
         } else if (spinPosition.position === 's') {
             if (spinPosition.variations.length === 0 && featureInQuestion === '8')
                 return false;
-            if (spinPosition.parent.footness === 'b' && featureInQuestion === 'c')
+            if (spinPosition.footness === 'b' && featureInQuestion === 'c')
                 return false;
         }
         if (spinPosition.position !== 'c' && featureInQuestion === 'w')
@@ -652,7 +652,7 @@ export class SpinSpinner {
             if (spinPosition.hasVariation('b') && featureInQuestion === 's')
                 return false;
         } else if (spinPosition.position === 's') {
-            if (spinPosition.parent.footness === 'b' && featureInQuestion === 'c')
+            if (spinPosition.footness === 'b' && featureInQuestion === 'c')
                 return false;
         }
         if (spinPosition.position !== 'c' && featureInQuestion === 'w')

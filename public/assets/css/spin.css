@@ -97,8 +97,9 @@
         z-index: 0;
         position: static;
         width: 100%;
+        margin-bottom: 30px;
     }
     .main-application-container {
-        min-height: calc(100vh - 60px - 50px);
+        min-height: calc(100vh - 60px - 50px - 30px);
     }
 }

@@ -9,9 +9,7 @@ const historyNavRightButton = document.getElementById('history-nav-right');
 const historyNavCount = document.getElementById('history-nav-count');
 
 const spinObjArray = JSON.parse(localStorage.getItem('SpinHistory'));
-let currentIndex = null;
-let maxIndex = spinObjArray.length-1;
-historyNavCount.innerHTML = `1/${maxIndex+1}`;
+let maxIndex = 0;
 
 historyNavLeftButton.onclick = () => {
     if(spinObjArray===null) return; //empty array guard
@@ -33,9 +31,20 @@ historyNavRightButton.onclick = () => {
     applicationContainer.innerHTML = getSpinHTML(spinObjArray[currentIndex]);
 };
 
-displayLastSpin();
 
 function displayLastSpin() {
     if(spinObjArray===null) return; //empty array guard
     applicationContainer.innerHTML = getSpinHTML(spinObjArray[spinObjArray.length-1]); //display most recent spin spun
+}
+
+
+let currentIndex = null;
+if(spinObjArray === null) {
+    historyNavCount.innerHTML = `0/0`;
+}
+else
+{
+    maxIndex = spinObjArray.length-1;
+    historyNavCount.innerHTML = `1/${maxIndex+1}`;
+    displayLastSpin();
 }
