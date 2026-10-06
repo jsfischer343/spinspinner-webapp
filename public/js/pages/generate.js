@@ -10,32 +10,34 @@ export const defaultPageContent_generate = `
 `
 
 window.pageGenerate_spin = () => {
-    let spinDirection = false;
-    let normalize = true;
-    if(localStorage.getItem('spinoption-spindirection')==='Clockwise') spinDirection = true;
-    if(localStorage.getItem('spinoption-lessweirdness')==='0') normalize = false;
-    let spinner = new SpinSpinner(spinDirection,normalize);
-    let spinType = localStorage.getItem('spinoption-spintype');
-    let spinLevel = localStorage.getItem('spinoption-spinlevel');
-    validateSpinLevel(spinLevel);
-    updateSpinnerRuleSet(spinner);
+    for(let i=0;i<100;i++) {
+        let spinDirection = false;
+        let normalize = true;
+        if(localStorage.getItem('spinoption-spindirection')==='Clockwise') spinDirection = true;
+        if(localStorage.getItem('spinoption-lessweirdness')==='0') normalize = false;
+        let spinner = new SpinSpinner(spinDirection,normalize);
+        let spinType = localStorage.getItem('spinoption-spintype');
+        let spinLevel = localStorage.getItem('spinoption-spinlevel');
+        validateSpinLevel(spinLevel);
+        updateSpinnerRuleSet(spinner);
 
-    if(spinType === 'Any') spinner.spin(spinLevel);
-    else if(spinType === 'Camel') spinner.spin('c',spinLevel);
-    else if(spinType === 'Sit') spinner.spin('s',spinLevel);
-    else if(spinType === 'Upright') spinner.spin('u',spinLevel);
-    else if(spinType === 'Layback') spinner.spin('l',spinLevel);
-    else if(spinType === 'Combo') spinner.spin('k',spinLevel);
-    else throw new Error('No valid spin option preset');
+        if(spinType === 'Any') spinner.spin(spinLevel);
+        else if(spinType === 'Camel') spinner.spin('c',spinLevel);
+        else if(spinType === 'Sit') spinner.spin('s',spinLevel);
+        else if(spinType === 'Upright') spinner.spin('u',spinLevel);
+        else if(spinType === 'Layback') spinner.spin('l',spinLevel);
+        else if(spinType === 'Combo') spinner.spin('k',spinLevel);
+        else throw new Error('No valid spin option preset');
 
-    //Output HTML
-    document.getElementById('spincontainer').innerHTML = getSpinHTML(spinner.spinHistory[0]);
-    //And to console (for debugging)
-    console.log(spinner.spinHistoryToCode());
-    //Cache spin history to browser so user can lookup previous spun spins
-    cacheSpin(spinner.spinHistory[0]);
-    //cleanup
-    spinner.spinHistory = [];
+        //Output HTML
+        document.getElementById('spincontainer').innerHTML = getSpinHTML(spinner.spinHistory[0]);
+        //And to console (for debugging)
+        console.log(spinner.spinHistoryToCode());
+        //Cache spin history to browser so user can lookup previous spun spins
+        cacheSpin(spinner.spinHistory[0]);
+        //cleanup
+        spinner.spinHistory = [];
+    }
 }
 
 function cacheSpin(spinObj) {

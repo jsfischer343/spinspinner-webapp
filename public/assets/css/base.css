@@ -224,10 +224,11 @@ menu a {
         z-index: 2;
     }
     .main-application-container {
+        align-items: center;
         width: 100%;
         padding: 0;
-        padding-top: 60px;
         margin: 0;
+        margin-top: 60px;
         min-height: calc(100vh - 60px);
     }
     .bottom-bar {

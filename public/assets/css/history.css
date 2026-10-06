@@ -39,11 +39,4 @@
         position: static;
         width: 100%;
     }
-    .main-application-container {
-        padding-top: 0;
-        min-height: calc(100vh - 60px - 60px);
-    }
-    .spin {
-        padding-bottom: 60px;
-    }
 }

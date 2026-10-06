@@ -72,8 +72,9 @@ export class SpinSpinner {
             this.setRandomBaseQualities();
             this.generateSpin();
         } else if (args.length === 1) {
-            const level = args[0];
-            this.targetLevel = level;
+            if (args[0] === 'Any') this.targetLevel = easyRandom.range(0, 4);
+            else if (args[0] === 'Base') this.targetLevel = 0;
+            else this.targetLevel = args[0];
             this.currentSpin = new Spin();
 
             let spinSelect;
