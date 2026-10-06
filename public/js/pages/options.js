@@ -1,7 +1,84 @@
-const lessWeirdnessOption = document.getElementById('option-lessweirdness');
-const lessWeirdnessCheckbox = document.getElementById('option-lessweirdness-checkbox');
+export const defaultPageContent_options = `
+    <ul class="option-list">
+        <li class="option-item has-dropdown">
+            <div class="option-desc-text">SpinType</div>
+            <div class="option-selected-text" id="option-selected-text-spintype">Any</div>
+            <ul class="dropdown-content">
+            <li id="option-spintype-any" onclick="pageOptions_setSpinType('Any')">Any</li>
+            <li id="option-spintype-camel" onclick="pageOptions_setSpinType('Camel')">Camel</li>
+            <li id="option-spintype-sit" onclick="pageOptions_setSpinType('Sit')">Sit</li>
+            <li id="option-spintype-upright" onclick="pageOptions_setSpinType('Upright')">Upright</li>
+            <li id="option-spintype-layback" onclick="pageOptions_setSpinType('Layback')">Layback</li>
+            <li id="option-spintype-combo" onclick="pageOptions_setSpinType('Combo')">Combo</li>
+            </ul>
+        </li>
+        <li class="option-item has-dropdown">
+            <div class="option-desc-text">Spin Level</div>
+            <div class="option-selected-text" id="option-selected-text-spinlevel">Any</div>
+            <ul class="dropdown-content">
+            <li id="option-spinlevel-any" onclick="pageOptions_setSpinLevel('Any')">Any</li>
+            <li id="option-spinlevel-base" onclick="pageOptions_setSpinLevel('Base')">Base</li>
+            <li id="option-spinlevel-1" onclick="pageOptions_setSpinLevel('1')">1</li>
+            <li id="option-spinlevel-2" onclick="pageOptions_setSpinLevel('2')">2</li>
+            <li id="option-spinlevel-3" onclick="pageOptions_setSpinLevel('3')">3</li>
+            <li id="option-spinlevel-4" onclick="pageOptions_setSpinLevel('4')">4</li>
+            </ul>
+        </li>
+        <li class="option-item has-dropdown">
+            <div class="option-desc-text">Preferred Spin Direction</div>
+            <div class="option-selected-text" id="option-selected-text-spindirection">Counterclockwise</div>
+            <ul class="dropdown-content">
+            <li id="option-spindirection-cc" onclick="pageOptions_setSpinDirection('Counterclockwise')">Counterclockwise</li>
+            <li id="option-spindirection-c" onclick="pageOptions_setSpinDirection('Clockwise')">Clockwise</li>
+            </ul>
+        </li>
+        <li class="option-item has-dropdown">
+            <div class="option-desc-text">Rule Set</div>
+            <div class="option-selected-text" id="option-selected-text-ruleset">Standard</div>
+            <ul class="dropdown-content">
+            <li id="option-ruleset-s" onclick="pageOptions_setSpinRuleSet('Standard')">Standard</li>
+            <li id="option-ruleset-ajs" onclick="pageOptions_setSpinRuleSet('Adult Junior-Senior')">Adult Junior-Senior</li>
+            <li id="option-ruleset-ain" onclick="pageOptions_setSpinRuleSet('Adult Intermediate-Novice')">Adult Intermediate-Novice</li>
+            <li id="option-ruleset-ag" onclick="pageOptions_setSpinRuleSet('Adult Gold')">Adult Gold</li>
+            <li id="option-ruleset-as" onclick="pageOptions_setSpinRuleSet('Adult Silver')">Adult Silver</li>
+            <li id="option-ruleset-ab" onclick="pageOptions_setSpinRuleSet('Adult Bronze')">Adult Bronze</li>
+            </ul>
+        </li>
+        <li class="option-item place-center" id="option-lessweirdness" onclick="pageOptions_toggleLessWeirdness()">
+            <label for="option-lessweirdness" class="option-item-label" id="optiontext-lessweirdness">Less Weirdness</label>
+            <input type="checkbox" id="option-lessweirdness-checkbox" disabled>
+        </li>
+    </ul>
+`
 
-lessWeirdnessOption.onclick = () => {
+//SpinType Dropdown
+window.pageOptions_setSpinType = (type) => {
+    localStorage.setItem('spinoption-spintype',type);
+    document.getElementById('option-selected-text-spintype').innerHTML = type;
+}
+
+//SpinLevel Dropdown
+window.pageOptions_setSpinLevel = (level) => {
+    localStorage.setItem('spinoption-spinlevel',level);
+    document.getElementById('option-selected-text-spinlevel').innerHTML = level;
+}
+
+//SpinDirection Dropdown
+window.pageOptions_setSpinDirection = (direction) => {
+    localStorage.setItem('spinoption-spindirection',direction);
+    document.getElementById('option-selected-text-spindirection').innerHTML = direction;
+}
+
+//RuleSet Dropdown
+window.pageOptions_setSpinRuleSet = (ruleset) => {
+    localStorage.setItem('spinoption-ruleset',ruleset);
+    document.getElementById('option-selected-text-ruleset').innerHTML = ruleset;
+    updateValidOptions();
+}
+
+//Less weirdness Toggle
+window.pageOptions_toggleLessWeirdness = () => {
+    let lessWeirdnessCheckbox = document.getElementById('option-lessweirdness-checkbox');
     if(lessWeirdnessCheckbox.checked) {
         lessWeirdnessCheckbox.checked = false;
         localStorage.setItem('spinoption-lessweirdness','0');
@@ -11,104 +88,6 @@ lessWeirdnessOption.onclick = () => {
         localStorage.setItem('spinoption-lessweirdness','1');
     }
 }
-
-checkAndUpdateDefaults();
-updateValidOptions();
-
-//SpinType Dropdown
-document.getElementById('option-spintype-any').onclick = () => {
-    localStorage.setItem('spinoption-spintype','Any');
-    document.getElementById('option-selected-text-spintype').innerHTML = 'Any';
-}
-document.getElementById('option-spintype-camel').onclick = () => {
-    localStorage.setItem('spinoption-spintype','Camel');
-    document.getElementById('option-selected-text-spintype').innerHTML = 'Camel';
-}
-document.getElementById('option-spintype-sit').onclick = () => {
-    localStorage.setItem('spinoption-spintype','Sit');
-    document.getElementById('option-selected-text-spintype').innerHTML = 'Sit';
-}
-document.getElementById('option-spintype-upright').onclick = () => {
-    localStorage.setItem('spinoption-spintype','Upright');
-    document.getElementById('option-selected-text-spintype').innerHTML = 'Upright';
-}
-document.getElementById('option-spintype-layback').onclick = () => {
-    localStorage.setItem('spinoption-spintype','Layback');
-    document.getElementById('option-selected-text-spintype').innerHTML = 'Layback';
-}
-document.getElementById('option-spintype-combo').onclick = () => {
-    localStorage.setItem('spinoption-spintype','Combo');
-    document.getElementById('option-selected-text-spintype').innerHTML = 'Combo';
-}
-
-//SpinLevel Dropdown
-document.getElementById('option-spinlevel-any').onclick = () => {
-    localStorage.setItem('spinoption-spinlevel','Any');
-    document.getElementById('option-selected-text-spinlevel').innerHTML = 'Any';
-}
-document.getElementById('option-spinlevel-base').onclick = () => {
-    localStorage.setItem('spinoption-spinlevel','Base');
-    document.getElementById('option-selected-text-spinlevel').innerHTML = 'Base';
-}
-document.getElementById('option-spinlevel-1').onclick = () => {
-    localStorage.setItem('spinoption-spinlevel','1');
-    document.getElementById('option-selected-text-spinlevel').innerHTML = '1';
-}
-document.getElementById('option-spinlevel-2').onclick = () => {
-    localStorage.setItem('spinoption-spinlevel','2');
-    document.getElementById('option-selected-text-spinlevel').innerHTML = '2';
-}
-document.getElementById('option-spinlevel-3').onclick = () => {
-    localStorage.setItem('spinoption-spinlevel','3');
-    document.getElementById('option-selected-text-spinlevel').innerHTML = '3';
-}
-document.getElementById('option-spinlevel-4').onclick = () => {
-    localStorage.setItem('spinoption-spinlevel','4');
-    document.getElementById('option-selected-text-spinlevel').innerHTML = '4';
-}
-
-//SpinDirection Dropdown
-document.getElementById('option-spindirection-cc').onclick = () => {
-    localStorage.setItem('spinoption-spindirection','Counterclockwise');
-    document.getElementById('option-selected-text-spindirection').innerHTML = 'Counterclockwise';
-}
-document.getElementById('option-spindirection-c').onclick = () => {
-    localStorage.setItem('spinoption-spindirection','Clockwise');
-    document.getElementById('option-selected-text-spindirection').innerHTML = 'Clockwise';
-}
-
-//RuleSet Dropdown
-document.getElementById('option-ruleset-s').onclick = () => {
-    localStorage.setItem('spinoption-ruleset','Standard');
-    document.getElementById('option-selected-text-ruleset').innerHTML = 'Standard';
-    updateValidOptions();
-}
-document.getElementById('option-ruleset-ajs').onclick = () => {
-    localStorage.setItem('spinoption-ruleset','Adult Junior-Senior');
-    document.getElementById('option-selected-text-ruleset').innerHTML = 'Adult Junior-Senior';
-    updateValidOptions();
-}
-document.getElementById('option-ruleset-ain').onclick = () => {
-    localStorage.setItem('spinoption-ruleset','Adult Intermediate-Novice');
-    document.getElementById('option-selected-text-ruleset').innerHTML = 'Adult Intermediate-Novice';
-    updateValidOptions();
-}
-document.getElementById('option-ruleset-ag').onclick = () => {
-    localStorage.setItem('spinoption-ruleset','Adult Gold');
-    document.getElementById('option-selected-text-ruleset').innerHTML = 'Adult Gold';
-    updateValidOptions();
-}
-document.getElementById('option-ruleset-as').onclick = () => {
-    localStorage.setItem('spinoption-ruleset','Adult Silver');
-    document.getElementById('option-selected-text-ruleset').innerHTML = 'Adult Silver';
-    updateValidOptions();
-}
-document.getElementById('option-ruleset-ab').onclick = () => {
-    localStorage.setItem('spinoption-ruleset','Adult Bronze');
-    document.getElementById('option-selected-text-ruleset').innerHTML = 'Adult Bronze';
-    updateValidOptions();
-}
-
 
 function updateSelectedOptionText() {
     //SpinType Dropdown
@@ -180,6 +159,7 @@ function updateSelectedOptionText() {
         document.getElementById('option-selected-text-ruleset').innerHTML = 'Adult Bronze';
 
     //LessWeirdness Toggle
+    let lessWeirdnessCheckbox = document.getElementById('option-lessweirdness-checkbox');
     if(localStorage.getItem('spinoption-lessweirdness')==='1') {
         lessWeirdnessCheckbox.checked = true;
     }
@@ -241,3 +221,10 @@ function updateValidOptions() {
     }
     updateSelectedOptionText();
 }
+
+
+export function pageOptions_init() { //called once when switched to the page
+    updateValidOptions();
+}
+
+checkAndUpdateDefaults(); //called once as soon as index.html is loaded

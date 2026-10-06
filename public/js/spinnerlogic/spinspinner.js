@@ -1,7 +1,7 @@
 import { Spin } from './spin.js';
 import { SpinSegment } from './spinsegment.js';
 import { SpinPosition } from './spinposition.js';
-import * as easyRandom from './easyrandom.js';
+import * as easyRandom from '/js/utils/easyrandom.js';
 
 const CAMEL_CHANGEFOOTSPIN_PROB = 0.5;
 const CAMEL_FLYINGSPIN_PROB = 0.5;

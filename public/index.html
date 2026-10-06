@@ -6,8 +6,9 @@
     <link rel="icon" type="image/webp" href="/assets/images/spinspinner_logo.webp">
     <link rel="stylesheet" href="/assets/css/base.css">
     <link rel="stylesheet" href="/assets/css/spin.css">
-    <script type="module" src="/js/mobile-menu.js"></script>
-    <script type="module" src="/js/app.js"></script>
+    <link rel="stylesheet" href="/assets/css/history.css">
+    <link rel="stylesheet" href="/assets/css/options.css">
+    <link rel="stylesheet" href="/assets/css/resources.css">
     <title>SpinSpinner</title>
   </head>
   <body>
@@ -23,40 +24,37 @@
     </header>
     <div class="menu-nav" id="menu-nav">
       <menu>
-        <li class="menu-item"><a href="/" class="menu-item">
+        <li class="menu-item" id="menu-item-generate" onclick="changeMainApplicationContent('generate')">
           <picture class="menu-icon" >
             <source srcset="/assets/images/add_circle_white.svg" media="(prefers-color-scheme: dark)">
             <img src="/assets/images/add_circle_black.svg" width="25" height="25" alt="Generate">
           </picture>
           <div class="menu-text">Generate</div>
-        </a></li>
-        <li class="menu-item"><a href="/options.html" class="menu-item">
+        </li>
+        <li class="menu-item" id="menu-item-options" onclick="changeMainApplicationContent('options')">
           <picture class="menu-icon" >
             <source srcset="/assets/images/check_box_white.svg" media="(prefers-color-scheme: dark)">
             <img src="/assets/images/check_box_black.svg" width="25" height="25" alt="Options">
           </picture>
           <div class="menu-text">Options</div>
-        </a></li>
-        <li class="menu-item"><a href="/resources.html" class="menu-item">
+        </li>
+        <li class="menu-item" id="menu-item-resources" onclick="changeMainApplicationContent('resources')">
           <picture class="menu-icon" >
             <source srcset="/assets/images/book_2_white.svg" media="(prefers-color-scheme: dark)">
             <img src="/assets/images/book_2_black.svg" width="25" height="25" alt="Resources">
           </picture>
           <div class="menu-text">Resources</div>
         </a></li>
-        <li class="menu-item"><a href="/history.html" class="menu-item">
+        <li class="menu-item" id="menu-item-history" onclick="changeMainApplicationContent('history')">
           <picture class="menu-icon" >
             <source srcset="/assets/images/history_white.svg" media="(prefers-color-scheme: dark)">
             <img src="/assets/images/history_black.svg" width="25" height="25" alt="History">
           </picture>
           <div class="menu-text">History</div>
-        </a></li>
+        </li>
       </menu>
     </div>
     <div class="main-application-container place-center" id="mainapplicationcontainer">
-    </div>
-    <div class="spin-button-container">
-      <button id="spinbutton">Spin</button>
     </div>
     <footer class="bottom-bar">
       <ul>
@@ -70,5 +68,11 @@
       </ul>
       <div class="footer-app-info">SpinSpinner v1.1 beta</div>
     </footer>
+    <script type="module" src="/js/app.js"></script>
+    <script type="module" src="/js/utils/mobile-menu.js"></script>
+    <script type="module" src="/js/pages/generate.js"></script>
+    <script type="module" src="/js/pages/options.js"></script>
+    <script type="module" src="/js/pages/resources.js"></script>
+    <script type="module" src="/js/pages/history.js"></script>
   </body>
 </html>

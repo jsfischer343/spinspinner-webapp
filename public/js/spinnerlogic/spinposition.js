@@ -1,4 +1,4 @@
-import * as easyRandom from './easyrandom.js';
+import * as easyRandom from '/js/utils/easyrandom.js';
 
 const POS_FEATURE_BLADE_PROB = 0.175;
 const POS_FEATURE_COE_PROB = 0.2;

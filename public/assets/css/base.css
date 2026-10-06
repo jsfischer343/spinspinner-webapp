@@ -29,6 +29,10 @@
     justify-content: center;
 }
 
+.no-display {
+    display: none !important;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -47,14 +51,14 @@ body {
     }
 }
 
+a {
+    color: currentcolor;
+}
+
 menu, ul {
     list-style: none;
     margin: 0;
     padding: 0;
-}
-
-a {
-    color: currentcolor;
 }
 
 menu a {
@@ -105,9 +109,10 @@ menu a {
     height: 50px;
     margin: 2px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
-.menu-item:hover {
+.menu-item:hover, .menu-item-active {
     background-color: var(--bg-light-hover);
     @media (prefers-color-scheme: dark) {
         background-color: var(--bg-dark-hover);
@@ -188,7 +193,7 @@ menu a {
     }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
     .mobile-menu-selector {
         display: flex;
         place-items: center;

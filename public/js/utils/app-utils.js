@@ -1,4 +1,4 @@
-import { SpinPosition } from './spinposition.js';
+import { SpinPosition } from '/js/spinnerlogic/spinposition.js';
 
 const ccwIconPathLight = "/assets/images/rotate_left_black.svg";
 const cwIconPathLight = "/assets/images/rotate_right_black.svg";

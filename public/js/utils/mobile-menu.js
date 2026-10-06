@@ -18,7 +18,7 @@ function openMenu() {
     mobileMenuIconLight.src = '/assets/images/close_black.svg';
 }
 
-function closeMenu() {
+export function closeMenu() {
     menu.classList.remove('open');
     mobileMenuIconDark.srcset = '/assets/images/menu_white.svg';
     mobileMenuIconLight.src = '/assets/images/menu_black.svg';
