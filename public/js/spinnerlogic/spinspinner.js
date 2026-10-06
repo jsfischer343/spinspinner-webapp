@@ -71,8 +71,8 @@ export class SpinSpinner {
 
             this.setRandomBaseQualities();
             this.generateSpin();
-            if(throwCurrentSpinAway) {
-                throwCurrentSpinAway = false;
+            if(this.throwCurrentSpinAway) {
+                this.throwCurrentSpinAway = false;
                 spinHistory.pop();
                 spin();
             }
@@ -102,8 +102,8 @@ export class SpinSpinner {
 
             this.setRandomBaseQualities();
             this.generateSpin();
-            if(throwCurrentSpinAway) {
-                throwCurrentSpinAway = false;
+            if(this.throwCurrentSpinAway) {
+                this.throwCurrentSpinAway = false;
                 spinHistory.pop();
                 spin(level);
             }
@@ -120,8 +120,8 @@ export class SpinSpinner {
             }
             this.setRandomBaseQualities();
             this.generateSpin();
-            if(throwCurrentSpinAway) {
-                throwCurrentSpinAway = false;
+            if(this.throwCurrentSpinAway) {
+                this.throwCurrentSpinAway = false;
                 spinHistory.pop();
                 spin(type,level);
             }
@@ -576,7 +576,7 @@ export class SpinSpinner {
         while (true) {
             i++;
             if(i>20) {
-                throwCurrentSpinAway = true;
+                this.throwCurrentSpinAway = true;
                 return;
             }
             const randomSelect = easyRandom.pickFromVector([0, 1, 2, 3, 4, 5]);
