@@ -146,10 +146,10 @@ export class SpinPosition {
 
     getPositionString(codeFormat) {
         if (codeFormat) {
-            const map = { c: 'C', s: 'S', u: 'U', l: 'L', i: 'I' };
+            const map = { c: 'C', s: 'S', u: 'U', l: 'L' };
             return map[this.position] || '';
         } else {
-            const map = { c: 'camel', s: 'sit', u: 'upright', l: 'layback', i: 'intermediate' };
+            const map = { c: 'camel', s: 'sit', u: 'upright', l: 'layback' };
             return map[this.position] || '';
         }
     }
@@ -197,10 +197,10 @@ export class SpinPosition {
 
     static getPositionString(positionObj,codeFormat) {
         if (codeFormat) {
-            const map = { c: 'C', s: 'S', u: 'U', l: 'L', i: 'I' };
+            const map = { c: 'C', s: 'S', u: 'U', l: 'L' };
             return map[positionObj.position] || '';
         } else {
-            const map = { c: 'camel', s: 'sit', u: 'upright', l: 'layback', i: 'intermediate' };
+            const map = { c: 'camel', s: 'sit', u: 'upright', l: 'layback' };
             return map[positionObj.position] || '';
         }
     }

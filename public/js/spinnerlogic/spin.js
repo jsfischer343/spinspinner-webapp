@@ -14,7 +14,6 @@ export class Spin {
             cleanChangeFootSpin: false,
             allThreeBasicPositionsAnywhere: false,
         };
-        this.intermediatePositionFlag = false;
         this.twoVariationsFlag = false;
         this.changeDirectionFlag = false;
     }

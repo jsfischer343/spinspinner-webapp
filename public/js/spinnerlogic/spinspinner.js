@@ -22,7 +22,6 @@ const COMBO_SWAP_UPRIGHT_FOR_LAYBACK = 0.15;
 const ADD_VARIATION_PROB = 0.32;
 const ADD_SPIN_FEATURE_PROB = 0.19;
 const ADD_POSITION_FEATURE_PROB = 0.23;
-const ADD_INTERMEDIATE_POSITION_PROB = 0.13;
 const ADD_CHANGE_OF_DIRECTION_PROB = 0.13;
 
 const FEATURE_ON_SAME_POSITION_PROB = 0.05;
@@ -35,6 +34,7 @@ export class SpinSpinner {
     constructor(defaultDirection, normalize) {
         this.defaultDirection = defaultDirection;
         this.normalize = normalize;
+        this.throwCurrentSpinAway = false;
         this.adultRuleFlags = {
             active: false,
             junior_senior: false,
@@ -71,10 +71,17 @@ export class SpinSpinner {
 
             this.setRandomBaseQualities();
             this.generateSpin();
+            if(throwCurrentSpinAway) {
+                throwCurrentSpinAway = false;
+                spinHistory.pop();
+                spin();
+            }
         } else if (args.length === 1) {
-            if (args[0] === 'Any') this.targetLevel = easyRandom.range(0, 4);
-            else if (args[0] === 'Base') this.targetLevel = 0;
-            else this.targetLevel = args[0];
+            let level = null;
+            if (args[0] === 'Any') level = easyRandom.range(0, 4);
+            else if (args[0] === 'Base') level = 0;
+            else level = args[0];
+            this.targetLevel = level;
             this.currentSpin = new Spin();
 
             let spinSelect;
@@ -95,6 +102,11 @@ export class SpinSpinner {
 
             this.setRandomBaseQualities();
             this.generateSpin();
+            if(throwCurrentSpinAway) {
+                throwCurrentSpinAway = false;
+                spinHistory.pop();
+                spin(level);
+            }
         } else if (args.length === 2) {
             const type = args[0];
             const level = args[1];
@@ -108,6 +120,11 @@ export class SpinSpinner {
             }
             this.setRandomBaseQualities();
             this.generateSpin();
+            if(throwCurrentSpinAway) {
+                throwCurrentSpinAway = false;
+                spinHistory.pop();
+                spin(type,level);
+            }
         }
     }
 
@@ -378,8 +395,6 @@ export class SpinSpinner {
                     } else if (randomSelect === 2) {
                         if (this.addPositionFeature()) break;
                     } else if (randomSelect === 3) {
-                        if (this.addIntermediatePosition()) break;
-                    } else if (randomSelect === 4) {
                         if (this.addChangeOfDirection()) break;
                     } else {
                         throw new Error('Invalid bullet type');
@@ -468,16 +483,6 @@ export class SpinSpinner {
         return false;
     }
 
-    addIntermediatePosition() {
-        if (this.currentSpin.intermediatePositionFlag) return false;
-        const randomSegmentIndex = easyRandom.range(0, this.currentSpin.spinSegments.length - 1);
-        const randomSegment = this.currentSpin.spinSegments[randomSegmentIndex];
-        const randomSpinPosIndex = easyRandom.range(0, randomSegment.spinPositions.length - 1);
-        randomSegment.spinPositions.splice(randomSpinPosIndex + 1, 0, new SpinPosition(randomSegment.footness, 'i'));
-        this.currentSpin.intermediatePositionFlag = true;
-        return true;
-    }
-
     addChangeOfDirection() {
         if (this.currentSpin.changeDirectionFlag) return false;
         const seg0 = this.currentSpin.spinSegments[0];
@@ -510,58 +515,47 @@ export class SpinSpinner {
         const isChangeFoot = this.currentSpin.isChangeFoot;
         const isCombo = this.currentSpin.baseType === 'k';
 
-        if (isCombo) {
-            if (isChangeFoot) {
-                selectFrom = [0, 1, 2, 3, 4];
-                weights = [ADD_VARIATION_PROB, ADD_SPIN_FEATURE_PROB, ADD_POSITION_FEATURE_PROB, ADD_INTERMEDIATE_POSITION_PROB, ADD_CHANGE_OF_DIRECTION_PROB];
-            } else {
-                selectFrom = [0, 1, 2, 3];
-                weights = [ADD_VARIATION_PROB, ADD_SPIN_FEATURE_PROB, ADD_POSITION_FEATURE_PROB, ADD_INTERMEDIATE_POSITION_PROB];
-            }
+        if (isChangeFoot) {
+            selectFrom = [0, 1, 2, 3];
+            weights = [ADD_VARIATION_PROB, ADD_SPIN_FEATURE_PROB, ADD_POSITION_FEATURE_PROB, ADD_CHANGE_OF_DIRECTION_PROB];
         } else {
-            if (isChangeFoot) {
-                selectFrom = [0, 1, 2, 4];
-                weights = [ADD_VARIATION_PROB, ADD_SPIN_FEATURE_PROB, ADD_POSITION_FEATURE_PROB, ADD_CHANGE_OF_DIRECTION_PROB];
-            } else {
-                selectFrom = [0, 1, 2];
-                weights = [ADD_VARIATION_PROB, ADD_SPIN_FEATURE_PROB, ADD_POSITION_FEATURE_PROB];
-            }
+            selectFrom = [0, 1, 2];
+            weights = [ADD_VARIATION_PROB, ADD_SPIN_FEATURE_PROB, ADD_POSITION_FEATURE_PROB];
         }
+
         return easyRandom.pickFromVectorWeighted(selectFrom, weights);
     }
 
     pickNonConflictingPosition() {
         let nonConflictingPosition = null;
-        do {
-            if (!this.currentSpin.isChangeFoot) {
+        if (!this.currentSpin.isChangeFoot) {
+            const idx = easyRandom.range(0, this.currentSpin.spinSegments[0].spinPositions.length - 1);
+            nonConflictingPosition = this.currentSpin.spinSegments[0].spinPositions[idx];
+        } else {
+            let bulletsOnFirst = this.currentSpin.spinSegments[0].getBulletCount();
+            let bulletsOnSecond = this.currentSpin.spinSegments[1].getBulletCount();
+
+            if (this.adultRuleFlags.active && this.currentSpin.features.cleanChangeFootSpin)
+                bulletsOnSecond++;
+
+            if (this.currentSpin.spinSegments[0].features.difficultChangeOfPosition &&
+                this.currentSpin.spinSegments[1].features.difficultChangeOfPosition)
+                bulletsOnSecond--;
+
+            if (bulletsOnFirst === 2 && bulletsOnSecond < 2) {
+                const idx = easyRandom.range(0, this.currentSpin.spinSegments[1].spinPositions.length - 1);
+                nonConflictingPosition = this.currentSpin.spinSegments[1].spinPositions[idx];
+            } else if (bulletsOnFirst < 2 && bulletsOnSecond === 2) {
                 const idx = easyRandom.range(0, this.currentSpin.spinSegments[0].spinPositions.length - 1);
                 nonConflictingPosition = this.currentSpin.spinSegments[0].spinPositions[idx];
+            } else if (bulletsOnFirst < 2 && bulletsOnSecond < 2) {
+                const segIdx = easyRandom.range(0, 1);
+                const idx = easyRandom.range(0, this.currentSpin.spinSegments[segIdx].spinPositions.length - 1);
+                nonConflictingPosition = this.currentSpin.spinSegments[segIdx].spinPositions[idx];
             } else {
-                let bulletsOnFirst = this.currentSpin.spinSegments[0].getBulletCount();
-                let bulletsOnSecond = this.currentSpin.spinSegments[1].getBulletCount();
-
-                if (this.adultRuleFlags.active && this.currentSpin.features.cleanChangeFootSpin)
-                    bulletsOnSecond++;
-
-                if (this.currentSpin.spinSegments[0].features.difficultChangeOfPosition &&
-                    this.currentSpin.spinSegments[1].features.difficultChangeOfPosition)
-                    bulletsOnSecond--;
-
-                if (bulletsOnFirst === 2 && bulletsOnSecond < 2) {
-                    const idx = easyRandom.range(0, this.currentSpin.spinSegments[1].spinPositions.length - 1);
-                    nonConflictingPosition = this.currentSpin.spinSegments[1].spinPositions[idx];
-                } else if (bulletsOnFirst < 2 && bulletsOnSecond === 2) {
-                    const idx = easyRandom.range(0, this.currentSpin.spinSegments[0].spinPositions.length - 1);
-                    nonConflictingPosition = this.currentSpin.spinSegments[0].spinPositions[idx];
-                } else if (bulletsOnFirst < 2 && bulletsOnSecond < 2) {
-                    const segIdx = easyRandom.range(0, 1);
-                    const idx = easyRandom.range(0, this.currentSpin.spinSegments[segIdx].spinPositions.length - 1);
-                    nonConflictingPosition = this.currentSpin.spinSegments[segIdx].spinPositions[idx];
-                } else {
-                    throw new Error('Too many bullets on one foot');
-                }
+                throw new Error('Too many bullets on one foot');
             }
-        } while (nonConflictingPosition.position === 'i');
+        }
         return nonConflictingPosition;
     }
 
@@ -578,11 +572,17 @@ export class SpinSpinner {
     }
 
     addARequiredBulletForLevel4() {
+        let i = 0;
         while (true) {
+            i++;
+            if(i>20) {
+                throwCurrentSpinAway = true;
+                return;
+            }
             const randomSelect = easyRandom.pickFromVector([0, 1, 2, 3, 4, 5]);
 
             if (randomSelect === 0) {
-                if (this.currentSpin.features.difficultEntrance) {
+                if (!this.currentSpin.features.difficultEntrance||this.currentSpin.isFlying) {
                     this.currentSpin.features.difficultExit = true;
                     break;
                 }
